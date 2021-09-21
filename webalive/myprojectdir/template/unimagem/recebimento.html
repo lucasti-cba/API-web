@@ -1,0 +1,132 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Sales Cards  -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-md-12 col-lg-4 col-xlg-3">
+            <div class="card card-hover">
+                <div class="box bg-cyan text-center">
+                    <h1 class="font-light text-white">{{ exame.id }}</i></h1>
+                    <h6 class="text-white">Atendimento</h6>
+                </div>
+            </div>
+        </div>
+ 
+    <div class="col-md-12 col-lg-4 col-xlg-3">
+        <div class="card card-hover">
+            <div class="box bg-cyan text-center">
+                <h2 class="font-light text-white">{{ exame.data_exame }}</i></h2>
+                <h6 class="text-white">Horário</h6>
+            </div>
+        </div>
+    </div>
+
+        <div class="col-md-12 col-lg-4 col-xlg-3">
+            <div class="card card-hover">
+                <div class="box bg-cyan text-center">
+                    <h1 class="font-light text-white">{{ exame.paciente }}</i></h1>
+                    <h6 class="text-white">Paciente</h6>
+                </div>
+            </div>
+        </div>
+    <!-- column -->
+<!---- Coluna 1-->
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-0">Exames Realizados</h4>
+            </div>
+            <ul class="list-style-none">
+                {% for e in exame.exame.all %}
+                <li class="d-flex no-block card-body border-top">
+                    <i class="fa fa-gift w-30px mt-1"></i>
+                    <div>
+                        <a href="#" class="mb-0 font-medium p-0"> Exame: {{ e.nome}} </a>
+                        <span class="text-muted"> Cod. {{ e.codigo }} </span>
+                    </div>
+                    <div class="ms-auto">
+                        <div class="tetx-right">
+                            <h5 class="text-muted mb-0">R$</h5>
+                            <span class="text-muted font-16">{{ e.valor }}</span>
+                        </div>
+                    </div>
+                    
+                </li>
+                {% endfor %}
+                <li class="d-flex no-block card-body border-top">
+                    <i class="fa fa-gift w-30px mt-1"></i>
+                    <div>
+                        <a href="#" class="mb-0 font-medium p-0">TOTAL</a>
+                
+                    </div>
+                    <div class="ms-auto">
+                        <div class="tetx-right">
+                            <h5 class="text-muted mb-0">R$</h5>
+                            <span class="text-muted font-16">{{ total }}</span>
+                        </div>
+                    </div>
+                    
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+    
+
+
+<!---- Coluna 2-->
+    <div class="col-lg-6">
+        <div class="card">
+
+            
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'recebimentoAt' atendimento.id  %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h1 class="card-title">Entrada de Valor</h1>
+                    <div class="form-group row">
+                        <label for="id_dataIni"
+                            class="col-sm-3 text-end control-label col-form-label">Forma</label>
+                        <div class="col-sm-9">
+                            {{ form.tipo }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_dataFin"
+                            class="col-sm-3 text-end control-label col-form-label">Valor recebido</label>
+                        <div class="col-sm-9">
+                            {{ form.valor }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_recebimento_justificativa"
+                            class="col-sm-3 text-end control-label col-form-label">Justificativa</label>
+                        <div class="col-sm-9">
+                            {{ form.recebimento_justificativa }}
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value='Pagar' > </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+        
+                    {% endblock %}

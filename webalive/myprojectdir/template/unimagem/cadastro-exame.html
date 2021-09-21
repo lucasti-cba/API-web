@@ -1,0 +1,47 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'cadastroExame'  %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Cadastrar Exame</h4>
+                    <div class="form-group row">
+                        <label for="id_nome"
+                            class="col-sm-3 text-end control-label col-form-label">Exame</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_nome" name="nome"
+                                placeholder="Exame">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_codigo" class="col-sm-3 text-end control-label col-form-label">Código</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required id="id_codigo" name="codigo"
+                                placeholder="Código">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="id_valor"
+                            class="col-sm-3 text-end control-label col-form-label">Valor de Exame</label>
+                        <div class="col-sm-9">
+                            <input type="float" class="form-control" required  id="id_valor" name="valor"
+                                placeholder="Valor de Exame">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value='Criar' > </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+                    {% endblock %}

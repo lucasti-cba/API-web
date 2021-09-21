@@ -1,0 +1,68 @@
+
+<html>
+<head>
+    {% load static %}
+    <script type="text/javascript">
+
+
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script>
+</head>
+<body>
+    <div id="myDiv" name="myDiv" style=" width: 300px;"> 
+        <img src="https://static.wixstatic.com/media/3d6064_80ac8a8aafc04025b5c13b23d58ff84f~mv2.png/v1/fill/w_369,h_160,al_c,q_85,usm_0.66_1.00_0.01/Captura_de_Tela_2019-09-22_%C3%A0s_17_11_34_p.webp"  style="width: 300px; "alt="homepage" class="light-logo" />
+       <div>
+           <center><h2>Recibo</h2></center>
+        <label>
+        <h3>Paciente:{{ atendimento.exames.paciente.nome }}</h3>
+        </label>
+        <label>
+            <h3> CPF:{{ atendimento.exames.paciente.cpf }}</h3>
+            </label>
+            <label>
+                <h3> Data:{{ atendimento.exames.data_exame}}</h3>
+                </label>
+       </div>
+        <div>
+            <h2>Exames:</h2>
+            <table border="3">
+                <tbody>
+                    {% for exame in atendimento.exames.exame.all %}
+                <tr>
+                    <th>{{ exame.nome }}</th>
+                    <th>..............R$ {{ exame.valor }}</th>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th>Tipo Pagamento</th>
+                    <th>{{ atendimento.recebimento.tipo }}</th>
+                </tr>
+                <tr>
+                    <th>Valor Pago</th>
+                    <th>..............R$ {{ atendimento.recebimento.valor }}</th>
+                </tr>
+            </tbody>
+                </table>
+                <br>
+                <div>UNIMAGEM UNIDADE DE DIAGNOSTICOS POR IMAGEM SIMPLES LTDA</div>
+                <div>CNPJ/RFB 01.544.349/0001-57 – NIRE/JUCEMAT 51.2.0164764-0 </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div id="anotherDiv">
+
+    </div>
+    <input type="button" value="Imprimir" onclick="printDiv('myDiv')" /><a href="javascript:history.back()"><input type="button" value="Voltar"  /></a>
+</body>
+</html>

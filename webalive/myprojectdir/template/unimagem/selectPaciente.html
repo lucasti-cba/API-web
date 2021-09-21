@@ -1,0 +1,72 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'selectPaciente'  %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Selecione o paciente para continuar</h4>
+                    <div class="form-group row">
+                        <label for="id_pesquisa"
+                            class="col-sm-3 text-end control-label col-form-label">Nome  ou CPF:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_pesquisa" name="pesquisa"
+                            placeholder="Nome ou CPF">
+
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value='Pesquisar' > </div>
+                    </div>
+                
+            </form>
+
+        </div>
+        </div>
+        
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-0">Resultados</h4>
+                </div>
+                <ul class="list-style-none">
+                    {% for pessoa in query %}           
+        
+                           
+                    
+                    <li class="d-flex no-block card-body border-top">
+                        <i class="fa fa-gift w-30px mt-1"></i>
+                        <div>
+                            <a href="#" class="mb-0 font-medium p-0"> Nome: {{ pessoa.nome}} </a>
+                            <span class="text-muted"> CPF. {{ pessoa.cpf }} </span>
+                        </div>
+                        <div class="ms-auto">
+                            <div class="tetx-right">
+
+                                <h5 class="text-muted mb-0"> <a href="{% url 'exameRealizado' pessoa.id %}"><button type="submit" class="btn btn-primary" value='Selecionar' >Selecionar</button> </a></h5>
+                                <span class="text-muted font-16"></span>
+                             
+                            </div>
+                        </div>
+                        
+                    </li>
+                    {% endfor %}
+
+                   
+                </ul>
+            </div>
+        </div>
+        </div>
+        
+            
+
+                {% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <!-- Column -->
+    <div class="col-md-6 col-lg-2 col-xlg-3">
+        <a href="{% url 'cadastroPaciente' %}">
+        <div class="card card-hover">
+            <div class="box bg-warning text-center">
+                <h1 class="font-light text-white"><i class="fas fa-user-plus"></i></h1>
+                <h6 class="text-white">Cadastro Paciente</h6>
+            </div>
+        </div>
+    </a>
+    </div>
+    <div class="col-md-6 col-lg-2 col-xlg-3">
+        <a href="{% url 'cadastroMedico' %}">
+        <div class="card card-hover">
+            <div class="box bg-warning text-center">
+                <h1 class="font-light text-white"><i class="fas fa-user-plus"></i></h1>
+                <h6 class="text-white">Cadastro Médico</h6>
+            </div>
+        </div>
+    </a>
+    </div>
+    <div class="col-md-6 col-lg-2 col-xlg-3">
+        <a href="{% url 'cadastroExame' %}">
+        <div class="card card-hover">
+            <div class="box bg-warning text-center">
+                <h1 class="font-light text-white"><i class="fas fa-user-plus"></i></h1>
+                <h6 class="text-white">Cadastro Exames</h6>
+            </div>
+        </div>
+    </a>
+    </div>
+    <!-- Column -->
+    
+    <!-- Column -->
+</div>
+
+{% block content2 %}
+{% endblock %}
+
+
+                    {% endblock %}

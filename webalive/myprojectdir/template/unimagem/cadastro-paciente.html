@@ -1,0 +1,75 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'cadastroPaciente'  %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Cadastrar novo Paciente</h4>
+                    <div class="form-group row">
+                        <label for="id_nome"
+                            class="col-sm-3 text-end control-label col-form-label">Nome completo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_nome" name="nome"
+                            placeholder="Nome">
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_cpf" class="col-sm-3 text-end control-label col-form-label">CPF</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_cpf" name="cpf"
+                            placeholder="CPF">
+
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="id_data_nascimento"
+                            class="col-sm-3 text-end control-label col-form-label">Nascimento</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control"  required id="id_data_nascimento" name="data_nascimento"
+                            placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_nome_mae "
+                            class="col-sm-3 text-end control-label col-form-label">Mãe</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_nome_mae" name="nome_mae"
+                            placeholder="Mãe">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_telefone"
+                            class="col-sm-3 text-end control-label col-form-label">Telefone</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_telefone" name="telefone"
+                            placeholder="Telefone">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_email"
+                            class="col-sm-3 text-end control-label col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_email" name="email"
+                            placeholder="E-mail">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value='Criar' > </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>
+
+
+                    {% endblock %}

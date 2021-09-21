@@ -1,0 +1,47 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'cadastroMedico'  %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Cadastrar novo Médico</h4>
+                    <div class="form-group row">
+                        <label for="id_nome"
+                            class="col-sm-3 text-end control-label col-form-label">Nome completo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  required id="id_nome" name="nome"
+                                placeholder="Médico">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_crm" class="col-sm-3 text-end control-label col-form-label">CRM</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required id="id_crm" name="crm"
+                                placeholder="CRM">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="id_especialidade"
+                            class="col-sm-3 text-end control-label col-form-label">Especialidade</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" required  id="id_especialidade" name="especialidade"
+                                placeholder="Especialidade">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value='Criar' > </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+                    {% endblock %}

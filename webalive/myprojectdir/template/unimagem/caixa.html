@@ -1,0 +1,122 @@
+{% extends 'unimagem/base.html' %}
+{% load static %}
+{% block content %}
+<meta name="csrf_token" content="{{ csrf_token }}">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="{% url 'caixaAbrir'  %}" method="POST"></form>
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Caixa -- {% if caixa == None %}Fechado{% else %} Aberto{% endif %}</h4>
+
+                </div>
+
+                <input hidden id="id_aberto" value="A" type="text" name="aberto">
+                <ul class="list-style-none">
+                    {% for e in caixa.atendimento.all %}
+                    
+                    <li class="d-flex no-block card-body border-top">
+                        <i class="fa fa-gift w-30px mt-1"></i>
+                        <div>
+                            <a href="#" class="mb-0 font-medium p-0"> Exame: {% for ex in  e.exames.exame.all %} {{ ex.nome }} ,  {% endfor %}</a>
+                            <span class="text-muted"> Paciente: {{ e.exames.paciente.nome }}, Forma: {{ e.recebimento.tipo }}  </span>
+                        </div>
+                        <div class="ms-auto">
+                            <div class="tetx-right">
+                                <h5 class="text-muted mb-0">R$</h5>
+                                <span class="text-muted font-16">{{ e.recebimento.valor }}</span>
+                            </div>
+                        </div>
+                        
+                    </li>
+                 
+                    {% endfor %}
+                    <li class="d-flex no-block card-body border-top">
+                        <i class="fa fa-gift w-30px mt-1"></i>
+                        <div>
+                            <a href="#" class="mb-0 font-medium p-0">TOTAL</a>
+                    
+                        </div>
+                        <div class="ms-auto">
+                            <div class="tetx-right">
+                                <h5 class="text-muted mb-0">R$</h5>
+                                <span class="text-muted font-16">{{ caixa.valor_fechamento }}</span>
+                            </div>
+                        </div>
+                        
+                    </li>
+                   
+                </ul>
+                
+                   
+                    
+
+                <div class="border-top">
+                    <div class="card-body">
+                        {% if caixa == None %} <a href="{% url 'caixaAbrirUser' %}"><button type="button" class="btn btn-primary" value='Abrir' > Abrir</button></a>{% else %} 
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Fechar
+                          </button>
+                          {% endif %}
+                          
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>
+
+
+        <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Fechar Caixa?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-style-none">
+    
+                
+      
+                <li class="d-flex no-block card-body border-top">
+                    <i class="fa fa-gift w-30px mt-1"></i>
+                    <div>
+                        <a href="#" class="mb-0 font-medium p-0">TOTAL</a>
+                
+                    </div>
+                    <div class="ms-auto">
+                        <div class="tetx-right">
+                            <h5 class="text-muted mb-0">R$</h5>
+                            <span class="text-muted font-16">{{ caixa.valor_fechamento }}</span>
+                        </div>
+                    </div>
+                    
+                </li>
+               
+            </ul>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar Janela</button>
+          <form class="form-horizontal" action="{% url 'caixaAbrir'  %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-primary" value='Fechar Caixa' > 
+                </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+                   
+      
+                    {% endblock %}
